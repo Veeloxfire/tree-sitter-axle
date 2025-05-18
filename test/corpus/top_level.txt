@@ -53,8 +53,7 @@ foo :: (string: *ascii, len: u64) -> void {}
               (type (primitive_type))))
           (identifier)
           (type
-            (primitive_type
-              (integer_type)))
+            (primitive_type))
           (type
             (primitive_type)))
         (block)))))
@@ -79,8 +78,7 @@ foo :: (mut string: *ascii, mut len: u64) -> void {}
               (type (primitive_type))))
           (identifier)
           (type
-            (primitive_type
-              (integer_type)))
+            (primitive_type))
           (type
             (primitive_type)))
         (block)))))
@@ -136,8 +134,7 @@ constant : i32 : 1;
     (regular_declaration
       (identifier)
       (type
-        (primitive_type
-          (integer_type)))
+        (primitive_type))
       (expression
         (binop_expression
           (unop_expression
@@ -158,8 +155,7 @@ constant : i32 = 1;
     (regular_declaration
       (identifier)
       (type
-        (primitive_type
-          (integer_type)))
+        (primitive_type))
       (expression
         (binop_expression
           (unop_expression
@@ -180,8 +176,7 @@ mut constant : i32 = 1;
     (regular_declaration
       (identifier)
       (type
-        (primitive_type
-          (integer_type)))
+        (primitive_type))
       (expression
         (binop_expression
           (unop_expression

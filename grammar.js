@@ -10,6 +10,15 @@
 module.exports = grammar({
   name: "axle",
 
+  extras: $ => [
+    /[\s]/,
+    $.comment
+  ],
+
+  inline: $ => [
+    $.integer_type,
+  ],
+
   rules: {
     source_file: $ => repeat(choice(
       $.declaration,
@@ -29,7 +38,7 @@ module.exports = grammar({
 
     lambda_declaration: $ => prec(1, seq(
       optional('mut'),
-      $.identifier,
+      field('name', $.identifier),
       ':',
       optional($.type),
       choice(':', '='),
@@ -274,22 +283,6 @@ module.exports = grammar({
       seq('&', $.primary_and_suffix),
     ),
 
-    binary_operator: $ => choice(
-      '+',
-      '-',
-      '*',
-      '/',
-      '%',
-      '==',
-      '!=',
-      '<',
-      '>',
-      '<=',
-      '>=',
-      '|',
-      '&',
-    ),
-
     binop_expression_suffix: $ => seq(
       choice(
         prec.left(3, '+'),
@@ -324,9 +317,11 @@ module.exports = grammar({
       /[a-zA-Z_\d]*/,
     ),
 
+    number_suffix: $ => $.integer_type,
+
     number: $ => seq(
       /\d+/,
-      optional($.integer_type),
+      optional(field('suffix', $.number_suffix)),
     ),
 
     string: $ => seq(
@@ -370,5 +365,7 @@ module.exports = grammar({
         '\'',
       ),
     ),
+
+    comment: $ => seq('//', /[^\n\r]*/), 
   }
 });

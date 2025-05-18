@@ -16,7 +16,7 @@ constant :: 1i32;
             (primary_and_suffix
               (primary
                 (number
-                  (integer_type))))))))))
+                  suffix: (number_suffix))))))))))
 
 ==================
 Cast
@@ -36,14 +36,14 @@ constant :: cast(u32, -1i32);
             (primary_and_suffix
               (primary
                 (cast_expr
-                  (type (primitive_type (integer_type)))
+                  (type (primitive_type))
                   (expression
                     (binop_expression
                       (unop_expression
                         (primary_and_suffix
                           (primary
                             (number
-                              (integer_type))))))))))))))))
+                              suffix: (number_suffix))))))))))))))))
 
 ==================
 Negate
@@ -302,8 +302,7 @@ constant :: #type *u32;
                   (type
                     (pointer_type
                       (type
-                        (primitive_type
-                          (integer_type))))))))))))))
+                        (primitive_type)))))))))))))
 
 ==================
 Strings

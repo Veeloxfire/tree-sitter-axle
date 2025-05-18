@@ -1,0 +1,12 @@
+constant :: 1i32;
+// <- variable
+//          ^ number
+//           ^ number
+
+constant :: () -> void {}
+// <- variable
+
+constant : i32;
+// <- variable
+//          ^ type
+

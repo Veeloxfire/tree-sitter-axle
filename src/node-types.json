@@ -137,6 +137,11 @@
     "fields": {}
   },
   {
+    "type": "comment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "declaration",
     "named": true,
     "fields": {},
@@ -263,11 +268,6 @@
     }
   },
   {
-    "type": "integer_type",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "lambda",
     "named": true,
     "fields": {},
@@ -293,15 +293,22 @@
   {
     "type": "lambda_declaration",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "identifier",
-          "named": true
-        },
         {
           "type": "lambda",
           "named": true
@@ -350,17 +357,23 @@
   {
     "type": "number",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "integer_type",
-          "named": true
-        }
-      ]
+    "fields": {
+      "suffix": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "number_suffix",
+            "named": true
+          }
+        ]
+      }
     }
+  },
+  {
+    "type": "number_suffix",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "param_lambda_header",
@@ -473,17 +486,7 @@
   {
     "type": "primitive_type",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "integer_type",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "regular_declaration",
@@ -846,6 +849,10 @@
   },
   {
     "type": "/",
+    "named": false
+  },
+  {
+    "type": "//",
     "named": false
   },
   {

@@ -104,8 +104,7 @@ constant : (i32, foo);
       (type
         (tuple_type
           (type
-            (primitive_type
-              (integer_type)))
+            (primitive_type))
           (type
             (identifier)))))))
 
@@ -137,5 +136,4 @@ constant : i32;
     (regular_declaration
       (identifier)
       (type
-        (primitive_type
-          (integer_type))))))
+        (primitive_type)))))

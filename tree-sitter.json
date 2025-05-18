@@ -10,6 +10,7 @@
         "axle",
         "axl"
       ],
+      "highlights": "queries/axle/highlights.scm",
       "injection-regex": "^axle$",
       "class-name": "TreeSitterAxle"
     }
