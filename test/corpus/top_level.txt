@@ -1,0 +1,236 @@
+==================
+Import
+==================
+
+#import "hello";
+
+---
+
+(source_file
+  (import
+    (expression
+      (binop_expression
+        (unop_expression
+          (primary_and_suffix
+            (primary
+              (string))))))))
+
+==================
+Empty Lambda
+==================
+
+foo :: () -> void {}
+
+---
+
+(source_file
+  (declaration
+    (lambda_declaration
+      (identifier)
+      (lambda
+        (empty_lambda_header
+          (type
+            (primitive_type)))
+        (block)))))
+
+==================
+Param Lambda
+==================
+
+foo :: (string: *ascii, len: u64) -> void {}
+
+---
+
+(source_file
+  (declaration
+    (lambda_declaration
+      (identifier)
+      (lambda
+        (param_lambda_header
+          (identifier)
+          (type
+            (pointer_type
+              (type (primitive_type))))
+          (identifier)
+          (type
+            (primitive_type
+              (integer_type)))
+          (type
+            (primitive_type)))
+        (block)))))
+
+==================
+Mut Param Lambda
+==================
+
+foo :: (mut string: *ascii, mut len: u64) -> void {}
+
+---
+
+(source_file
+  (declaration
+    (lambda_declaration
+      (identifier)
+      (lambda
+        (param_lambda_header
+          (identifier)
+          (type
+            (pointer_type
+              (type (primitive_type))))
+          (identifier)
+          (type
+            (primitive_type
+              (integer_type)))
+          (type
+            (primitive_type)))
+        (block)))))
+
+==================
+Constant
+==================
+
+constant :: 1;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (number)))))))))
+
+==================
+Variable
+==================
+
+constant := 1;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (number)))))))))
+
+==================
+Typed Constant
+==================
+
+constant : i32 : 1;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (primitive_type
+          (integer_type)))
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (number)))))))))
+
+==================
+Typed Variable
+==================
+
+constant : i32 = 1;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (primitive_type
+          (integer_type)))
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (number)))))))))
+
+==================
+Mut Variable
+==================
+
+mut constant : i32 = 1;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (primitive_type
+          (integer_type)))
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (number)))))))))
+
+==================
+Multiple
+==================
+
+#import "hello";
+constant :: 1;
+foo :: () -> void {}
+bar :: () -> void {}
+
+---
+
+(source_file
+  (import
+    (expression
+      (binop_expression
+        (unop_expression
+          (primary_and_suffix
+            (primary
+              (string)))))))
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (number))))))))
+  (declaration
+    (lambda_declaration
+      (identifier)
+      (lambda
+        (empty_lambda_header
+          (type
+            (primitive_type)))
+        (block))))
+  (declaration
+    (lambda_declaration
+      (identifier)
+      (lambda
+        (empty_lambda_header
+          (type
+            (primitive_type)))
+        (block))))
+)

@@ -1,0 +1,141 @@
+==================
+Pointer
+==================
+
+constant : *void;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (pointer_type
+          (type
+            (primitive_type)))))))
+
+==================
+Mut Pointer
+==================
+
+constant : *mut void;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (pointer_type
+          (type
+            (primitive_type)))))))
+
+==================
+Slice
+==================
+
+constant : []void;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (slice_type
+          (type
+            (primitive_type)))))))
+
+==================
+Mut Slice
+==================
+
+constant : []mut void;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (slice_type
+          (type
+            (primitive_type)))))))
+
+==================
+Array
+==================
+
+constant : [void; 1];
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (array_type
+          (type
+            (primitive_type))
+          (expression
+            (binop_expression
+              (unop_expression
+                (primary_and_suffix
+                  (primary
+                    (number)))))))))))
+
+==================
+Tuple
+==================
+
+constant : (i32, foo);
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (tuple_type
+          (type
+            (primitive_type
+              (integer_type)))
+          (type
+            (identifier)))))))
+
+==================
+Identifier Type
+==================
+
+constant : TypeIdentifier;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (identifier)))))
+
+==================
+Integer Type
+==================
+
+constant : i32;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (primitive_type
+          (integer_type))))))

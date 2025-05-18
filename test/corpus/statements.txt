@@ -1,0 +1,224 @@
+==================
+Expression statement
+==================
+
+print_raw :: (string: *ascii, len: u64) -> void {
+  WriteConsoleA(stdout_handle, cast(*void, string), cast(u32, len), cast(*mut u32, nullptr));
+}
+
+---
+
+(source_file
+  (declaration
+    (lambda_declaration
+      (identifier)
+      (lambda
+        (param_lambda_header
+          (identifier)
+          (type
+            (pointer_type
+              (type (primitive_type))))
+          (identifier)
+          (type
+            (primitive_type
+              (integer_type)))
+          (type
+            (primitive_type)))
+        (block
+          (statement
+            (expression_statement
+              (expression
+                (binop_expression
+                  (unop_expression
+                    (primary_and_suffix
+                      (primary
+                        (identifier))
+                      (expression_suffix
+                        (suffix_call
+                          (expression
+                            (binop_expression
+                              (unop_expression
+                                (primary_and_suffix
+                                  (primary
+                                    (identifier))))))
+                          (expression
+                            (binop_expression
+                              (unop_expression
+                                (primary_and_suffix
+                                  (primary
+                                    (cast_expr
+                                      (type
+                                        (pointer_type
+                                          (type (primitive_type))))
+                                      (expression
+                                        (binop_expression
+                                          (unop_expression
+                                            (primary_and_suffix
+                                              (primary
+                                                (identifier))))))))))))
+                          (expression
+                            (binop_expression
+                              (unop_expression
+                                (primary_and_suffix
+                                  (primary
+                                    (cast_expr
+                                      (type
+                                        (primitive_type (integer_type)))
+                                      (expression
+                                        (binop_expression
+                                          (unop_expression
+                                            (primary_and_suffix
+                                              (primary
+                                                (identifier))))))))))))
+                          (expression
+                            (binop_expression
+                              (unop_expression
+                                (primary_and_suffix
+                                  (primary
+                                    (cast_expr
+                                      (type
+                                        (pointer_type
+                                          (type (primitive_type (integer_type)))))
+                                      (expression
+                                        (binop_expression
+                                          (unop_expression
+                                            (primary_and_suffix
+                                              (primary))))))))))))))))))))))))
+
+
+==================
+Return statement
+==================
+
+foo :: () -> void {
+  return 1;
+}
+
+---
+
+(source_file
+  (declaration
+    (lambda_declaration
+      (identifier)
+      (lambda
+        (empty_lambda_header
+          (type
+            (primitive_type)))
+        (block
+          (statement
+            (return_statement
+              (expression
+                (binop_expression
+                  (unop_expression
+                    (primary_and_suffix
+                      (primary
+                        (number)))))))))))))
+
+==================
+Return statement
+==================
+
+foo :: () -> void {
+  return;
+}
+
+---
+
+(source_file
+  (declaration
+    (lambda_declaration
+      (identifier)
+      (lambda
+        (empty_lambda_header
+          (type
+            (primitive_type)))
+        (block
+          (statement
+            (return_statement)))))))
+
+==================
+Block statement
+==================
+
+foo :: () -> void {
+  { }
+}
+
+---
+
+(source_file
+  (declaration
+    (lambda_declaration
+      (identifier)
+      (lambda
+        (empty_lambda_header
+          (type
+            (primitive_type)))
+        (block
+          (statement (block)))))))
+
+==================
+If statement
+==================
+
+foo :: () -> void {
+  if (1) {
+    
+  }
+  else {
+    
+  }
+}
+
+---
+
+(source_file
+  (declaration
+    (lambda_declaration
+      (identifier)
+      (lambda
+        (empty_lambda_header
+          (type
+            (primitive_type)))
+        (block
+          (statement
+            (if_statement
+              (expression
+                (binop_expression
+                  (unop_expression
+                    (primary_and_suffix
+                      (primary
+                        (number))))))
+              (statement (block))
+              (statement (block)))))))))
+
+==================
+While statement
+==================
+
+foo :: () -> void {
+  while (1) {
+    
+  }
+}
+
+---
+
+(source_file
+  (declaration
+    (lambda_declaration
+      (identifier)
+      (lambda
+        (empty_lambda_header
+          (type
+            (primitive_type)))
+        (block
+          (statement
+            (while_statement
+              (expression
+                (binop_expression
+                  (unop_expression
+                    (primary_and_suffix
+                      (primary
+                        (number))))))
+              (statement (block)))))))))

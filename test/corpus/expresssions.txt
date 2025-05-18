@@ -1,0 +1,446 @@
+==================
+Number Suffix
+==================
+
+constant :: 1i32;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (number
+                  (integer_type))))))))))
+
+==================
+Cast
+==================
+
+constant :: cast(u32, -1i32);
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (cast_expr
+                  (type (primitive_type (integer_type)))
+                  (expression
+                    (binop_expression
+                      (unop_expression
+                        (primary_and_suffix
+                          (primary
+                            (number
+                              (integer_type))))))))))))))))
+
+==================
+Negate
+==================
+
+constant :: -1;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (number)))))))))
+
+==================
+Add
+==================
+
+constant :: 1 + 1;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (number))))
+          (binop_expression_suffix
+            (expression
+              (binop_expression
+                (unop_expression
+                  (primary_and_suffix
+                    (primary
+                      (number))))))))))))
+
+==================
+Call
+==================
+
+constant :: foo();
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (identifier))
+              (expression_suffix
+                (suffix_call)))))))))
+
+==================
+Call Arg
+==================
+
+constant :: foo(hello);
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (identifier))
+              (expression_suffix
+                (suffix_call
+                  (expression
+                    (binop_expression
+                      (unop_expression
+                        (primary_and_suffix
+                          (primary
+                            (identifier)))))))))))))))
+
+==================
+Index No Args
+==================
+
+constant :: foo[];
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (identifier))
+              (expression_suffix
+                (suffix_index)))))))))
+
+==================
+Index Args
+==================
+
+constant :: foo[1];
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (identifier))
+              (expression_suffix
+                (suffix_index
+                  (expression
+                    (binop_expression
+                      (unop_expression
+                        (primary_and_suffix
+                          (primary
+                            (number)))))))))))))))
+
+==================
+Member
+==================
+
+constant :: foo.ptr;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (identifier))
+              (expression_suffix
+                (identifier)))))))))
+
+==================
+Array Trailing Comma
+==================
+
+arr: [ascii; 1] = [
+  0,
+];
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (array_type
+          (type
+            (primitive_type))
+          (expression
+            (binop_expression
+              (unop_expression
+                (primary_and_suffix
+                  (primary
+                    (number))))))))
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (array_expression
+                  (expression
+                    (binop_expression
+                      (unop_expression
+                        (primary_and_suffix
+                          (primary
+                            (number)))))))))))))))
+
+==================
+Array No Trailing Comma
+==================
+
+arr: [ascii; 1] = [
+  0
+];
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (type
+        (array_type
+          (type
+            (primitive_type))
+          (expression
+            (binop_expression
+              (unop_expression
+                (primary_and_suffix
+                  (primary
+                    (number))))))))
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (array_expression
+                  (expression
+                    (binop_expression
+                      (unop_expression
+                        (primary_and_suffix
+                          (primary
+                            (number)))))))))))))))
+
+==================
+Type expression
+==================
+
+constant :: #type *u32;
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (type_expr
+                  (type
+                    (pointer_type
+                      (type
+                        (primitive_type
+                          (integer_type))))))))))))))
+
+==================
+Strings
+==================
+
+constant :: "hello";
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (string)))))))))
+
+==================
+String Escape Sequences
+==================
+
+constant :: "\0\\\n\r\t\"";
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (string
+                  (string_escape_sequence)
+                  (string_escape_sequence)
+                  (string_escape_sequence)
+                  (string_escape_sequence)
+                  (string_escape_sequence)
+                  (string_escape_sequence))))))))))
+
+
+==================
+Charactes Sequences
+==================
+
+constant :: 'a';
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (character)))))))))
+
+==================
+Character Sequences
+==================
+
+constant :: '\0';
+constant :: '\\';
+constant :: '\n';
+constant :: '\r';
+constant :: '\t';
+constant :: '\'';
+
+---
+
+(source_file
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (character
+                  (character_escape_sequence)))))))))
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (character
+                  (character_escape_sequence)))))))))
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (character
+                  (character_escape_sequence)))))))))
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (character
+                  (character_escape_sequence)))))))))
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (character
+                  (character_escape_sequence)))))))))
+  (declaration
+    (regular_declaration
+      (identifier)
+      (expression
+        (binop_expression
+          (unop_expression
+            (primary_and_suffix
+              (primary
+                (character
+                  (character_escape_sequence)))))))))
+)
